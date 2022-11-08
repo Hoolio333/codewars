@@ -15,3 +15,17 @@ const twoSum = function (numbers, target) {
 };
 
 // 2. Valid Parentheses
+
+const isValid = function (s) {
+  let bracket = [];
+  for (let i = 0; i < s.length; i++) {
+    const current = s[i];
+    const bracketLast = bracket[bracket.length - 1];
+    if (current === "(") bracket.push(")");
+    else if (current === "[") bracket.push("]");
+    else if (current === "{") bracket.push("}");
+    else if (current === bracketLast) bracket.pop();
+    else return false;
+  }
+  return bracket.length === 0;
+};
