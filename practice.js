@@ -14,4 +14,4 @@ const twoSum = function (numbers, target) {
   }
 };
 
-// 2. Add Two Numbers
+// 2. Valid Parentheses
