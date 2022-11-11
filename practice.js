@@ -148,3 +148,75 @@ const maxProfit = function (prices) {
 
 // You don't actually need to calculate minimum if you start iteration from the end.
 // Just keep track of the maximum number of the right sub array at the point of iteration
+
+// .5 Valid Palindrome
+
+/* A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+
+Given a string s, return true if it is a palindrome, or false otherwise.
+
+ 
+
+Example 1:
+
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+Example 2:
+
+Input: s = "race a car"
+Output: false
+Explanation: "raceacar" is not a palindrome.
+Example 3:
+
+Input: s = " "
+Output: true
+Explanation: s is an empty string "" after removing non-alphanumeric characters.
+Since an empty string reads the same forward and backward, it is a palindrome. */
+
+// Solution 1
+
+const isPalindrome = (s) => {
+  s = s.toLowerCase().replace(/[^a-z0-9]/gi, "");
+  for (let i = 0, j = s.length - 1; i <= j; i++, j--) {
+    if (s.charAt(i) !== s.charAt(j)) return false;
+  }
+  return true;
+};
+
+// Solution 2
+
+const isPalindrome = function (s) {
+  // check for invalid input; return false
+  if (s.length < 1) return false;
+
+  //convert string to lowercase
+  s = s.toLowerCase();
+
+  //strip string of non-alphanumeric characters
+  s = s.replace(/[^a-z0-9]/gi, "");
+
+  // iterate through string s, comparing both ends of string s and evaluating if each character matches
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] !== s[s.length - i - 1]) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+// Solution 3
+
+const isPalindrome = function (s) {
+  let newString = s.toLowerCase().replace(/[^0-9a-z]/g, "");
+  let left = 0,
+    right = newString.length - 1;
+
+  while (left < right) {
+    if (newString[left] !== newString[right]) return false;
+    left++;
+    right--;
+  }
+  return true;
+};
