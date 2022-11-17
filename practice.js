@@ -388,3 +388,37 @@ const lowestCommonAncestor = function (root, p, q) {
   }
   return root;
 };
+
+/* 11. Balanced Binary Tree
+
+Given a binary tree, determine if it is height-balanced.
+
+Example 1:
+
+Input: root = [3,9,20,null,null,15,7]
+Output: true
+Example 2:
+
+Input: root = [1,2,2,3,3,null,null,4,4]
+Output: false
+Example 3:
+
+Input: root = []
+Output: true
+*/
+
+const isBalanced = function (root) {
+  if (!root) return true;
+  if (Math.abs(maxDepth(root.left) - maxDepth(root.right)) > 1) {
+    return false;
+  }
+  return isBalanced(root.left) && isBalanced(root.right);
+};
+const maxDepth = function (root) {
+  if (!root) {
+    return 0;
+  }
+  let left = maxDepth(root.left);
+  let right = maxDepth(root.right);
+  return Math.max(left, right) + 1;
+};
