@@ -666,8 +666,6 @@ Given a string s which consists of lowercase or uppercase letters, return the le
 
 Letters are case sensitive, for example, "Aa" is not considered a palindrome here.
 
- 
-
 Example 1:
 
 Input: s = "abccccdd"
@@ -698,4 +696,34 @@ const longestPalindrome = function (s) {
   }
 
   return count;
+};
+
+/* 18. Reverse Linked List
+
+Given the head of a singly linked list, reverse the list, and return the reversed list.
+
+Example 1:
+
+Input: head = [1,2,3,4,5]
+Output: [5,4,3,2,1]
+Example 2:
+
+Input: head = [1,2]
+Output: [2,1]
+Example 3:
+
+Input: head = []
+Output: [] */
+
+const reverseList = function (head) {
+  let curr = null; //take current as null
+  while (head) {
+    //run a loop untill head becomes null
+    let nxtNode = head.next; //take the current head next node in a variable
+    head.next = curr; //make the current head next node points to current
+    curr = head; // make the head as new current
+    head = nxtNode; // make the next node of the head as new head
+  }
+  head = curr; // since at last new head points to null, so make it points to current
+  return head;
 };
