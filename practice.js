@@ -752,3 +752,41 @@ const majorityElement = function (a) {
   d = Object.entries(d).sort((a, b) => b[1] - a[1]);
   return Number(d[0][0]);
 };
+
+/* 20. Add Binary
+
+Given two binary strings a and b, return their sum as a binary string.
+
+Example 1:
+
+Input: a = "11", b = "1"
+Output: "100"
+Example 2:
+
+Input: a = "1010", b = "1011"
+Output: "10101" */
+
+const addBinary = function (a, b) {
+  let op = "",
+    carry = 0;
+  let bigger = a.length > b.length ? a : b;
+  let smaller = a.length > b.length ? b : a;
+  for (let i = bigger.length - 1, j = smaller.length - 1; i >= 0; i--, j--) {
+    let sum = parseInt(bigger[i]) + parseInt(smaller[j] || 0) + carry;
+    if (sum === 0) {
+      carry = 0;
+      op = "0" + op;
+    } else if (sum === 1) {
+      carry = 0;
+      op = "1" + op;
+    } else if (sum === 2) {
+      carry = 1;
+      op = "0" + op;
+    } else {
+      carry = 1;
+      op = "1" + op;
+    }
+  }
+  op = carry ? carry + op : op;
+  return op;
+};
