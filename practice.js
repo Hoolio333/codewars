@@ -910,3 +910,45 @@ Output: true */
 const containsDuplicate = function (nums) {
   return new Set(nums).size !== nums.length;
 };
+
+/* Code Wars
+
+Level 8 - Take the First N Elements
+
+Create a function that accepts a list/array and a number n, and returns a list/array of the first n elements from the list/array.
+
+Test: 
+
+describe("Sample Tests", function(){
+  it("should work for sample tests", function(){
+    Test.assertDeepEquals(take([0, 1, 2, 3, 5, 8, 13], 3), [0, 1, 2], "should return the first 3 items");
+  });
+});*/
+
+function take(arr, n) {
+  let slicedArray = arr.slice(0, n);
+  return slicedArray;
+}
+
+/* Code Wars
+
+Level 8 - No zeros for heros
+
+Numbers ending with zeros are boring.
+
+They might be fun in your world, but not here.
+
+Get rid of them. Only the ending ones.
+
+1450 -> 145
+960000 -> 96
+1050 -> 105
+-1050 -> -105
+
+Zero alone is fine, don't worry about it. Poor guy anyway */
+
+const noBoringZeros = (number) => {
+  if (number === 0) return number;
+  if (number % 10 === 0) return noBoringZeros(number / 10);
+  else return number;
+};
