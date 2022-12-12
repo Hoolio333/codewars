@@ -1730,3 +1730,111 @@ const simpleMultiplication = (n) => n * (n % 2 ? 9 : 8);
 function simpleMultiplication(number) {
   return number % 2 === 0 ? number * 8 : number * 9;
 }
+
+/* Code Wars
+
+Level 7 - Descending Order
+
+Your task is to make a function that can take any non-negative integer as an argument and return it with its digits in descending order. Essentially, rearrange the digits to create the highest possible number.
+
+Examples:
+Input: 42145 Output: 54421
+
+Input: 145263 Output: 654321
+
+Input: 123456789 Output: 987654321
+
+describe("Basic tests", () => {
+  it("Testing for fixed tests", () => {
+    assert.strictEqual(descendingOrder(0), 0)
+    assert.strictEqual(descendingOrder(1), 1)
+    assert.strictEqual(descendingOrder(111), 111)
+    assert.strictEqual(descendingOrder(15), 51)
+    assert.strictEqual(descendingOrder(1021), 2110)
+    assert.strictEqual(descendingOrder(123456789), 987654321)
+    })
+  })
+*/
+
+function descendingOrder(n) {
+  return parseInt((n + "").split("").sort().reverse().join(""));
+}
+
+// Alternative Solution:
+
+function descendingOrder(n) {
+  return +(n + "")
+    .split("")
+    .sort(function (a, b) {
+      return b - a;
+    })
+    .join("");
+}
+
+/* Code Wars
+
+Level 7 - Friend or Foe?
+
+Make a program that filters a list of strings and returns a list with only your friends name in it.
+
+If a name has exactly 4 letters in it, you can be sure that it has to be a friend of yours! Otherwise, you can be sure he's not...
+
+Ex: Input = ["Ryan", "Kieran", "Jason", "Yous"], Output = ["Ryan", "Yous"]
+
+i.e.
+
+friend ["Ryan", "Kieran", "Mark"] `shouldBe` ["Ryan", "Mark"]
+Note: keep the original order of the names in the output.
+
+describe("Basic tests", () => {
+  it("Testing for fixed tests", () => {
+    assert.deepEqual(friend(["Ryan", "Kieran", "Mark"]), ["Ryan", "Mark"])
+    assert.deepEqual(friend(["Ryan", "Jimmy", "123", "4", "Cool Man"]), ["Ryan"])
+    assert.deepEqual(friend(["Jimm", "Cari", "aret", "truehdnviegkwgvke", "sixtyiscooooool"]), ["Jimm", "Cari", "aret"])
+    assert.deepEqual(friend(["Love", "Your", "Face", "1"]), ["Love", "Your", "Face"])
+  })
+})
+*/
+
+function friend(friends) {
+  return friends.filter(function (item) {
+    return item.length === 4;
+  });
+}
+
+// Alternative Solutions
+
+function friend(friends) {
+  return friends.filter((n) => n.length === 4);
+}
+
+function friend(friends) {
+  //your code here
+  var realFriends = [];
+  for (i = 0; i < friends.length; i++) {
+    if (friends[i].length == 4 && isNaN(friends[i])) {
+      realFriends.push(friends[i]);
+    }
+  }
+
+  return realFriends;
+}
+
+function friend(friends) {
+  return friends.reduce((res, x) => {
+    if (x.length == 4) {
+      res.push(x);
+      return res;
+    } else return res;
+  }, []);
+}
+
+function friend(friends) {
+  let goodFriends = [];
+  for (let i = 0; i < friends.length; i++) {
+    if (friends[i].length === 4) {
+      goodFriends.push(friends[i]);
+    }
+  }
+  return goodFriends;
+}
