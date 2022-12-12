@@ -1554,3 +1554,129 @@ function rowSumOddNumbers(n) {
   // TODO
   return n > 0 ? n * n * n : "Wrong Input";
 }
+
+/* Code Wars
+
+Level 8 - Double Char
+
+Given a string, you have to return a string in which each character (case-sensitive) is repeated once.
+
+Examples (Input -> Output):
+* "String"      -> "SSttrriinngg"
+* "Hello World" -> "HHeelllloo  WWoorrlldd"
+* "1234!_ "     -> "11223344!!__  "
+
+describe("doubleChar", function() {
+  it("works for some examples", function() {
+    Test.assertEquals(doubleChar("abcd"), "aabbccdd");
+    Test.assertEquals(doubleChar("Adidas"), "AAddiiddaass");
+    Test.assertEquals(doubleChar("1337"), "11333377");
+    Test.assertEquals(doubleChar("illuminati"), "iilllluummiinnaattii");
+    Test.assertEquals(doubleChar("123456"), "112233445566");
+    Test.assertEquals(doubleChar("%^&*("), "%%^^&&**((");
+  });
+}); 
+*/
+
+function doubleChar(str) {
+  var newStr = "";
+  for (var i = 0; i < str.length; i++) {
+    newStr += str.charAt(i) + str.charAt(i);
+  }
+  return newStr;
+}
+
+// Alternative Solutions:
+
+const doubleChar = (str) =>
+  str
+    .split("")
+    .map((c) => c + c)
+    .join("");
+
+function doubleChar(str) {
+  return str
+    .split("")
+    .map(function (c) {
+      return c + c;
+    })
+    .join("");
+}
+
+/* Code Wars
+
+Level 8 - Switch it Up!
+
+When provided with a number between 0-9, return it in words.
+
+Input :: 1
+
+Output :: "One".
+
+If your language supports it, try using a switch statement.
+
+describe("Basic Tests",() =>{
+  it("Testing for fixed tests", () => {
+    assert.strictEqual(switchItUp(1),"One");
+    assert.strictEqual(switchItUp(3),"Three");
+    assert.strictEqual(switchItUp(5),"Five");
+  });
+});
+*/
+
+function switchItUp(number) {
+  if (number === 0) return "Zero";
+  if (number === 1) return "One";
+  if (number === 2) return "Two";
+  if (number === 3) return "Three";
+  if (number === 4) return "Four";
+  if (number === 5) return "Five";
+  if (number === 6) return "Six";
+  if (number === 7) return "Seven";
+  if (number === 8) return "Eight";
+  if (number === 9) return "Nine";
+}
+
+// Alternative Solutions:
+
+function switchItUp(number) {
+  switch (number) {
+    case 0:
+      return "Zero";
+    case 1:
+      return "One";
+    case 2:
+      return "Two";
+    case 3:
+      return "Three";
+    case 4:
+      return "Four";
+    case 5:
+      return "Five";
+    case 6:
+      return "Six";
+    case 7:
+      return "Seven";
+    case 8:
+      return "Eight";
+    case 9:
+      return "Nine";
+    default:
+      return "Unknown number";
+  }
+}
+
+function switchItUp(n) {
+  return [
+    "Zero",
+    "One",
+    "Two",
+    "Three",
+    "Four",
+    "Five",
+    "Six",
+    "Seven",
+    "Eight",
+    "Nine",
+  ][n];
+}
