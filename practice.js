@@ -3015,3 +3015,62 @@ function century(year) {
 function century(year) {
   return ((year + 99) / 100) | 0;
 }
+
+/* Code Wars
+
+Level 6 - Break camelCase
+
+Complete the solution so that the function will break up camel casing, using a space between words.
+
+Example
+"camelCasing"  =>  "camel Casing"
+"identifier"   =>  "identifier"
+""             =>  ""
+
+describe("Sample Tests", () => {
+  it("Should pass sample tests", () => {
+    assert.strictEqual(solution('camelCasing'), 'camel Casing', 'Unexpected result')
+    assert.strictEqual(solution('camelCasingTest'), 'camel Casing Test', 'Unexpected result')
+  });
+});
+*/
+
+function solution(string) {
+  let splitStr = string.split("");
+  let newStr = string.split("");
+  let capStr = string.toUpperCase().split("");
+  for (i = splitStr.length - 1; i >= 0; i--) {
+    if (splitStr[i] === capStr[i]) {
+      newStr.splice(i, 0, " ");
+    }
+  }
+  return newStr.join("");
+}
+
+// Alternative Solutions
+
+function solution(string) {
+  return string.replace(/([A-Z])/g, " $1");
+}
+
+function solution(string) {
+  string = string.split("").map(function (el) {
+    if (el === el.toUpperCase()) {
+      el = " " + el;
+    }
+    return el;
+  });
+  return string.join("");
+}
+
+function solution(string) {
+  return string.replace(/([a-z])([A-Z])/g, "$1 $2");
+}
+
+const solution = (string) => {
+  return [...string]
+    .map((char) => {
+      return char === char.toUpperCase() ? ` ${char}` : char;
+    })
+    .join("");
+};
