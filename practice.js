@@ -3074,3 +3074,45 @@ const solution = (string) => {
     })
     .join("");
 };
+
+/* Code Wars
+
+Level 6 - Even or Odd
+
+Create a function that takes an integer as an argument and returns "Even" for even numbers or "Odd" for odd numbers.
+
+describe("Sample tests",() => {
+  
+  it("2 is even", () => {
+    assert.strictEqual(evenOrOdd(2), "Even");
+  });
+  it("7 is odd", () => {
+    assert.strictEqual(evenOrOdd(7), "Odd");
+  });
+  it("-42 is even", () => {
+    assert.strictEqual(evenOrOdd(-42), "Even");
+  });
+  it("-7 is odd", () => {
+    assert.strictEqual(evenOrOdd(-7), "Odd");
+  });
+  it("0 is even", () => {
+    assert.strictEqual(evenOrOdd(0), "Even");
+  });
+});
+*/
+
+function evenOrOdd(number) {
+  if (number % 2 == 0) {
+    return "Even";
+  } else {
+    return "Odd";
+  }
+}
+
+// Alternative Solutions
+
+function even_or_odd(number) {
+  return number % 2 ? "Odd" : "Even";
+}
+
+const even_or_odd = (n) => (n % 2 ? "Odd" : "Even");
