@@ -3194,3 +3194,42 @@ var findNb = (m) => {
   var sum = (x) => ((x * (x + 1)) / 2) ** 2;
   return sum(n) == m ? n : -1;
 };
+
+/* Code Wars
+
+Level 8 - Beginner Series #4 Cockroach
+
+The cockroach is one of the fastest insects. Write a function which takes its speed in km per hour and returns it in cm per second, rounded down to the integer (= floored).
+
+For example:
+
+1.08 --> 30
+Note! The input is a Real number (actual type is language dependent) and is >= 0. The result should be an Integer.
+
+describe("Basic Tests", function() {
+  it("Testing for fixed tests", () => {
+    assert.strictEqual(cockroachSpeed(1.08), 30);
+    assert.strictEqual(cockroachSpeed(1.09), 30);
+    assert.strictEqual(cockroachSpeed(0), 0);
+  });
+});
+*/
+
+function cockroachSpeed(s) {
+  return Math.floor(s * 27.7778);
+}
+
+// Alternative Solutions
+
+const cockroachSpeed = (s) => Math.floor(s / 0.036);
+
+function cockroachSpeed(s) {
+  const secsInHour = 3600;
+  const centimetersInKilometers = 100000;
+
+  return Math.floor((s * centimetersInKilometers) / secsInHour);
+}
+
+function cockroachSpeed(s) {
+  return Math.floor((s * 100000) / 3600);
+}
