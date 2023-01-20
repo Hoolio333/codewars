@@ -3340,3 +3340,139 @@ function hoopCount(n) {
     ? "Great, now move on to tricks"
     : "Keep at it until you get it";
 }
+
+/* Code Wars
+
+Level 6 - Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!
+
+The number 
+89
+89 is the first integer with more than one digit that fulfills the property partially introduced in the title of this kata. What's the use of saying "Eureka"? Because this sum gives the same number: 
+89
+=
+8
+1
++
+9
+2
+89=8 
+1
+ +9 
+2
+ 
+
+The next number in having this property is 
+135
+135:
+
+See this property again: 
+135
+=
+1
+1
++
+3
+2
++
+5
+3
+135=1 
+1
+ +3 
+2
+ +5 
+3
+ 
+
+Task
+We need a function to collect these numbers, that may receive two integers 
+�
+a, 
+�
+b that defines the range 
+[
+�
+,
+�
+]
+[a,b] (inclusive) and outputs a list of the sorted numbers in the range that fulfills the property described above.
+
+Examples
+Let's see some cases (input -> output):
+
+1, 10  --> [1, 2, 3, 4, 5, 6, 7, 8, 9]
+1, 100 --> [1, 2, 3, 4, 5, 6, 7, 8, 9, 89]
+If there are no numbers of this kind in the range 
+[
+�
+,
+�
+]
+[a,b] the function should output an empty list.
+
+90, 100 --> []
+
+describe("Tests", function() {
+  it("Fixed tests", function() {
+      assert.deepEqual(sumDigPow(1, 10), [1, 2, 3, 4, 5, 6, 7, 8, 9])
+      assert.deepEqual(sumDigPow(1, 100), [1, 2, 3, 4, 5, 6, 7, 8, 9, 89])
+      assert.deepEqual(sumDigPow(10, 100),  [89])
+      assert.deepEqual(sumDigPow(90, 100), [])
+      assert.deepEqual(sumDigPow(90, 150), [135])
+      assert.deepEqual(sumDigPow(50, 150), [89, 135])
+      assert.deepEqual(sumDigPow(10, 150), [89, 135])
+  });
+});
+
+*/
+
+function sumDigPow(a, b) {
+  eureka = [];
+  for (i = a; i <= b; i++) {
+    digits = String(i).split("");
+    if (
+      i ==
+      digits.reduce(function (accumulator, currentValue, currentIndex) {
+        return accumulator + currentValue ** (currentIndex + 1);
+      }, 0)
+    ) {
+      eureka.push(i);
+    }
+  }
+  return eureka;
+}
+
+// Alternative Solutions
+
+function sumDigPow(a, b) {
+  var arr = [];
+  for (var i = a; i <= b; i++) {
+    var sum = 0;
+    for (var j = 0; j <= String(i).length; j++) {
+      sum += Math.pow(parseInt(String(i)[j]), j + 1);
+      if (sum == i) arr.push(i);
+    }
+  }
+  return arr;
+}
+
+const EUREKAS = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 89, 135, 175, 518, 598, 1306, 1676, 2427, 2646798,
+];
+
+const sumDigPow = (a, b) => EUREKAS.filter((n) => a <= n && n <= b);
+
+function sumDigPow(a, b) {
+  var resultArr = [];
+  var tempString = [];
+  var sum;
+
+  for (var i = a; i < b; i++) {
+    sum = 0;
+    tempString = ("" + i).split("");
+    for (var j = 0; j < tempString.length; j++)
+      sum += Math.pow(tempString[j], j + 1);
+    if (sum === i) resultArr.push(i);
+  }
+  return resultArr;
+}
