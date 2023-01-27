@@ -3912,3 +3912,140 @@ nbDig = (n, d) =>
   Array.from(Array(n + 1), (e, i) => i * i)
     .join("")
     .match(new RegExp(d, "g")).length;
+
+/* Code Wars
+
+Level 6 - The Supermarket Queue
+
+There is a queue for the self-checkout tills at the supermarket. Your task is write a function to calculate the total time required for all the customers to check out!
+
+input
+customers: an array of positive integers representing the queue. Each integer represents a customer, and its value is the amount of time they require to check out.
+n: a positive integer, the number of checkout tills.
+output
+The function should return an integer, the total time required.
+
+Important
+Please look at the examples and clarifications below, to ensure you understand the task correctly :)
+
+describe("Sample tests", function() {
+  
+  it("Simple tests", () => {
+    assert.strictEqual(queueTime([], 1), 0);
+    assert.strictEqual(queueTime([1,2,3,4], 1), 10);
+    assert.strictEqual(queueTime([2,2,3,3,4,4], 2), 9);
+    assert.strictEqual(queueTime([1,2,3,4,5], 100), 5);
+  });
+
+  it("Examples", () => {
+    assert.strictEqual(queueTime([5,3,4],    1), 12);
+    assert.strictEqual(queueTime([10,2,3,3], 2), 10);
+    assert.strictEqual(queueTime([2,3,10,2], 2), 12);
+  });
+*/
+
+function queueTime(customers, n) {
+  var arr = new Array(n).fill(0);
+
+  for (var i = 0; i < customers.length; i++) {
+    var idx = arr.indexOf(Math.min(...arr));
+    arr[idx] += customers[i];
+  }
+
+  return Math.max(...arr);
+}
+
+// Alternative Solutions
+
+function queueTime(customers, n) {
+  var w = new Array(n).fill(0);
+  for (let t of customers) {
+    let idx = w.indexOf(Math.min(...w));
+    w[idx] += t;
+  }
+  return Math.max(...w);
+}
+
+function queueTime(customers, n) {
+  let tills = Array(n).fill(0);
+
+  customers.forEach((customer) => {
+    let nextTill = tills.indexOf(Math.min(...tills));
+    tills[nextTill] += customer;
+  });
+
+  return Math.max(...tills);
+}
+
+function queueTime(customers, n) {
+  /**
+   * ------------------ EXAMPLE:
+   * if customers --> [2, 3, 10]
+   * and if n --> 2
+   */
+
+  let queueArr = Array(n).fill(0);
+  // EXAMPLE: queueArr --> [0, 0];
+
+  customers.forEach((customer) => {
+    queueArr[0] += customer;
+    /**
+     * ------------------ EXAMPLE:
+     * 1 iteration queueArr --> [2, 0];
+     * 2 iteration queueArr --> [3, 2];
+     * 3 iteration queueArr --> [12, 3];
+     */
+
+    queueArr.sort((a, b) => a - b);
+    /**
+     * ------------------ EXAMPLE:
+     * 1 iteration queueArr --> [0, 2];
+     * 2 iteration queueArr --> [2, 3];
+     * 3 iteration queueArr --> [3, 12];
+     */
+  });
+
+  return queueArr[queueArr.length - 1]; // EXAMPLE: last num in queueArr --> 12
+}
+
+function queueTime(customers, registers) {
+  let arr = [];
+
+  for (let i = 0; i < registers; i++) arr[i] = 0;
+
+  for (let i = 0; i < customers.length; i++) {
+    arr[0] += customers[i];
+    arr.sort((a, b) => a - b);
+  }
+
+  return arr[arr.length - 1];
+}
+
+let queue = [];
+
+const queueTime = (customers, n) => {
+  let remaining = customers.slice().reverse();
+  let count = 0;
+
+  while (queue.length || remaining.length) {
+    count = count + 1;
+
+    // add new workers to queue if slots available
+    while (queue.length < n && remaining.length) {
+      queue.push(remaining.splice(-1)[0]);
+    }
+
+    // iterate workers in queue and empty complete workers
+    queue = queue.reduce((result, worker) => {
+      worker -= 1;
+
+      if (worker > 0) {
+        result.push(worker);
+      }
+
+      return result;
+    }, []);
+  }
+
+  return count;
+};
