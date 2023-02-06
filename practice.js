@@ -4459,3 +4459,60 @@ function testEven(n) {
    }
    else return false;
 }
+
+/* Code Wars
+
+Level 8 - Sentence Smash
+
+Sentence Smash
+Write a function that takes an array of words and smashes them together into a sentence and returns the sentence. You can ignore any need to sanitize words or add punctuation, but you should add spaces between each word. Be careful, there shouldn't be a space at the beginning or the end of the sentence!
+
+Example
+['hello', 'world', 'this', 'is', 'great']  =>  'hello world this is great'
+
+describe("smash", () =>  {
+
+  it ("Should return empty string for empty array.", () => {
+    assert.strictEqual(smash([]), "");
+  });
+
+  it ("One word example should return the word.", () => {
+    assert.strictEqual(smash(["hello"]), "hello");
+  });
+    
+  it ("Multiple words should be separated by spaces.", () =>  {
+    assert.strictEqual(smash(["hello", "world"]), "hello world");
+    assert.strictEqual(smash(["hello", "amazing", "world"]), "hello amazing world");
+    assert.strictEqual(smash(["this", "is", "a", "really", "long", "sentence"]), "this is a really long sentence");
+  });
+});
+*/
+
+function smash (words) {
+  if (words.length===0){
+    return ""
+  } else {
+    return words.join(" ")
+  }
+};
+
+// Altnerative Solutions
+
+smash = function (words) {
+  return words.join(" ");
+};
+
+const smash = words => words.join(' ');
+
+function smash (words) {
+    "use strict";
+    var smashed = '';
+    for(var i = 0; i<words.length; i++) {
+      smashed += words[i];
+      if(i!=words.length-1) {
+        smashed += ' ';
+      }
+    }
+    return smashed;
+};
+
