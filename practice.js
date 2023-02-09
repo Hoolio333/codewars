@@ -4589,3 +4589,99 @@ const between = (a, b) =>
   return betweenArray;
 };
 
+/* Code Wars
+
+Level 6 - Highest Scoring Word
+
+Given a string of words, you need to find the highest scoring word.
+
+Each letter of a word scores points according to its position in the alphabet: a = 1, b = 2, c = 3 etc.
+
+For example, the score of abad is 8 (1 + 2 + 1 + 4).
+
+You need to return the highest scoring word as a string.
+
+If two words score the same, return the word that appears earliest in the original string.
+
+All letters will be lowercase and all inputs will be valid.
+
+describe("Basic tests", () => {
+  it("Testing for fixed tests", () => {
+    assert.strictEqual(high('man i need a taxi up to ubud'), 'taxi');
+    assert.strictEqual(high('what time are we climbing up the volcano'), 'volcano'); 
+    assert.strictEqual(high('take me to semynak'), 'semynak');   
+    assert.strictEqual(high('aa b'), 'aa');
+    assert.strictEqual(high('b aa'), 'b');
+    assert.strictEqual(high('bb d'), 'bb');
+    assert.strictEqual(high('d bb'), 'd');
+    assert.strictEqual(high('aaa b'), 'aaa');
+  })
+});
+*/
+
+function high(x){
+  let words = x.split(' '),
+      mx = 0,
+      res = '';
+  for(let i = 0; i < words.length; i++){
+    let s = words[i],
+        val = 0;
+    for(let j = 0; j < s.length; j++){
+      val += (s.charCodeAt(j) - 96);
+    }
+    if(val > mx){
+      mx = val;
+      res = s;
+    }
+  }
+  return res;
+}
+
+// Alternative Solutions
+
+function high(s){
+  let as = s.split(' ').map(s=>[...s].reduce((a,b)=>a+b.charCodeAt(0)-96,0));
+  return s.split(' ')[as.indexOf(Math.max(...as))];
+}
+
+function high(words) {
+
+  const alpha = ' abcdefghijklmnopqrstuvwxyz';
+  const score = word => word.split('').reduce((a, b) => a + alpha.indexOf(b), 0);
+
+  return words
+    .split(' ')
+    .map((word, pos) => ({ word: word, pos: pos, score: score(word) }))
+    .sort((a, b) => a.score - b.score || b.pos - a.pos)
+    .pop()
+    .word;
+    
+}
+
+function high(x){
+  let alphabets = [
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+    'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+  ];
+  
+  let words = x.split(" ");
+  let highestScore = 0;
+  let highestScoreWord = "";
+  
+  for (let word of words) {
+    let lettersSum = 0;
+    
+    for (let letter of word) {
+      lettersSum += alphabets.indexOf(letter) + 1;
+    }
+    
+    if (lettersSum > highestScore) {
+      highestScore = lettersSum;
+      highestScoreWord = word;
+    }
+  }
+  
+  return highestScoreWord;
+}
+
+
