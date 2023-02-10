@@ -4684,4 +4684,65 @@ function high(x){
   return highestScoreWord;
 }
 
+/* Code Wars
+
+Level 5 - Calculating with Functions
+
+This time we want to write calculations using functions and get the results. Let's have a look at some examples:
+
+seven(times(five())); // must return 35
+four(plus(nine())); // must return 13
+eight(minus(three())); // must return 5
+six(dividedBy(two())); // must return 3
+Requirements:
+
+There must be a function for each number from 0 ("zero") to 9 ("nine")
+There must be a function for each of the following mathematical operations: plus, minus, times, dividedBy
+Each calculation consist of exactly one operation and two numbers
+The most outer function represents the left operand, the most inner function represents the right operand
+Division should be integer division. For example, this should return 2, not 2.666666...:
+eight(dividedBy(three()));
+
+describe("Tests", () => {
+  it("test", () => {
+    assert.strictEqual(seven(times    (five ())), 35);
+    assert.strictEqual(four (plus     (nine ())), 13);
+    assert.strictEqual(eight(minus    (three())),  5);
+    assert.strictEqual(six  (dividedBy(two  ())),  3);
+  });
+});
+*/
+
+function zero(f) {return f ? f(0) : 0}
+function one(f) {return f ? f(1) : 1}
+function two(f) {return f ? f(2) : 2}
+function three(f) {return f ? f(3) : 3}
+function four(f) {return f ? f(4) : 4}
+function five(f) {return f ? f(5) : 5}
+function six(f) { return f ? f(6) : 6}
+function seven(f) {return f ? f(7) : 7}
+function eight(f) {return f ? f(8) : 8}
+function nine(f) {return f ? f(9) : 9}
+function plus(b) {return (a)=>a+b}
+function minus(b) {return (a)=>a-b}
+function times(b) { return (a)=>a*b}
+function dividedBy(b) {return (a)=>Math.floor(a/b)}
+
+// Alternative Solutions
+
+const zero  = (func) => func ? func(0) : 0;
+const one   = (func) => func ? func(1) : 1;
+const two   = (func) => func ? func(2) : 2;
+const three = (func) => func ? func(3) : 3;
+const four  = (func) => func ? func(4) : 4;
+const five  = (func) => func ? func(5) : 5;
+const six   = (func) => func ? func(6) : 6;
+const seven = (func) => func ? func(7) : 7;
+const eight = (func) => func ? func(8) : 8;
+const nine  = (func) => func ? func(9) : 9;
+
+const plus      = (x) => (num) => num + x;
+const minus     = (x) => (num) => num - x;
+const times     = (x) => (num) => num * x;
+const dividedBy = (x) => (num) => ~~(num / x);
 
