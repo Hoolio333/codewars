@@ -4928,3 +4928,96 @@ function rot13(message) {
   return str;
 
 }
+
+/* Code Wars
+
+Level 5 - String incrementer
+
+Your job is to write a function which increments a string, to create a new string.
+
+If the string already ends with a number, the number should be incremented by 1.
+If the string does not end with a number. the number 1 should be appended to the new string.
+Examples:
+
+foo -> foo1
+
+foobar23 -> foobar24
+
+foo0042 -> foo0043
+
+foo9 -> foo10
+
+foo099 -> foo100
+
+Attention: If the number has leading zeros the amount of digits should be considered.
+
+describe("Tests suite", () => {
+
+  const { assert } = require('chai');
+
+  function doTest(input, expected) {
+    const actual = incrementString(input);
+    assert.strictEqual(actual, expected, `for string: "${input}"\n`);
+  }
+
+  it("sample tests", () => {
+    doTest("foobar000", "foobar001");
+    doTest("foobar999", "foobar1000");
+    doTest("foobar00999", "foobar01000");
+    doTest("foo", "foo1");
+    doTest("foobar001", "foobar002");
+    doTest("foobar1", "foobar2");
+    doTest("1", "2");
+    doTest("009", "010");
+    doTest("fo99obar99", "fo99obar100");
+  });
+});
+*/
+
+function incrementString(strng) {
+  const body = strng.slice(0, -1);
+  const lastDigit = strng.slice(-1).match(/[0-9]/);
+  return lastDigit === null
+    ? strng + "1"
+    : lastDigit != 9
+    ? body + (+lastDigit + 1)
+    : incrementString(body) + "0";
+}
+
+// Alternative Solutions
+
+function incrementString(input) {
+  if(isNaN(parseInt(input[input.length - 1]))) return input + '1';
+  return input.replace(/(0*)([0-9]+$)/, function(match, p1, p2) {
+    var up = parseInt(p2) + 1;
+    return up.toString().length > p2.length ? p1.slice(0, -1) + up : p1 + up;
+  });
+}
+
+let incrementString = str => str.replace(/([0-8]|\d?9+)?$/, (e) => e ? + e + 1 : 1)
+
+const incrementString = s => s.replace(/[0-8]?9*$/, m => String(++m));
+
+function incrementString(input) {
+  return input.replace(/([0-8]?)(9*)$/, function(s, d, ns) {
+      return +d + 1 + ns.replace(/9/g, '0');
+    });
+}
+
+function incrementString(str){
+	var c = str[str.length-1];
+		switch(c){
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8': return str.substring(0, str.length-1) + (parseInt(c)+1);
+            case '9': return incrementString(str.substring(0, str.length-1)) + 0;
+            default: return str+"1";
+                }
+}
+
