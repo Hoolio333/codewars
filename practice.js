@@ -5461,3 +5461,7 @@ function productFib(prod){
   }
   return [num1, num2, num1 * num2 === prod]
 }
+
+/* Code Wars
+
+Level 8 - MakeUpperCase
