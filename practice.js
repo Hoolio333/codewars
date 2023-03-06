@@ -5852,3 +5852,9 @@ function binToDec(bin) {
   // Return the decimal number as a number value
   return dec;
 }
+
+// Alternative Solution:
+
+function binToDec(bin) {
+  return parseInt(bin, 2);
+}
