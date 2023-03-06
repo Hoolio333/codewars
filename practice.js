@@ -5830,3 +5830,25 @@ function solution(str, ending){
     return false;
   return str.substr(str.length-ending.length, ending.length) == ending;
 }
+
+/* Code Wars
+
+Level 8 - Bin to Decimal
+
+Complete the function which converts a binary number (given as a string) to a decimal number.
+
+describe("Example Tests", () => {
+  [ ["1",1], ["0",0], ["1001001", 73] ].forEach( ([inp, exp]) => Test.assertEquals( binToDec(inp), exp ) )
+});
+*/
+
+function binToDec(bin) {
+  // Convert the binary string to an integer
+  const num = parseInt(bin, 2);
+
+  // Convert the integer to a decimal number and then to a number value
+  const dec = Number(num.toString(10));
+
+  // Return the decimal number as a number value
+  return dec;
+}
