@@ -5969,3 +5969,31 @@ function maxSequence(arr) {
   
   return Math.max(maxSum, 0);
 }
+
+/* Code Wars
+
+Level 7 - Remove anchor from URL
+
+Complete the function/method so that it returns the url with anything after the anchor (#) removed.
+
+Examples
+"www.codewars.com#about" --> "www.codewars.com"
+"www.codewars.com?page=1" -->"www.codewars.com?page=1"
+
+describe("Basic tests", () => {
+  it("Testing for fixed tests", () => {
+    assert.strictEqual(removeUrlAnchor('www.codewars.com#about'), 'www.codewars.com')
+    assert.strictEqual(removeUrlAnchor('www.codewars.com/katas/?page=1#about'), 'www.codewars.com/katas/?page=1')
+    assert.strictEqual(removeUrlAnchor('www.codewars.com/katas/'), 'www.codewars.com/katas/')
+    })
+  })
+  */
+
+  function removeUrlAnchor(url) {
+  const anchorIndex = url.indexOf("#");
+  if (anchorIndex !== -1) {
+    return url.slice(0, anchorIndex);
+  } else {
+    return url;
+  }
+}
